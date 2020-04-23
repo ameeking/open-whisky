@@ -106,6 +106,7 @@ services:
       - target: 3000
         published: 443
         protocol: tcp
+    tty: true
 
   admin:
     build:
@@ -123,6 +124,7 @@ services:
       - target: 3000
         published: 444
         protocol: tcp
+    tty: true
 
   dev-tls:
     build:
