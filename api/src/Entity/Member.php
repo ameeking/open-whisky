@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\WhiskyRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MemberRepository")
  */
-class Whisky
+class Member
 {
     /**
      * @ORM\Id()
@@ -23,31 +23,25 @@ class Whisky
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
+    private $firstName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $age;
+    private $lastName;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=255)
      */
-    private $abv;
+    private $email;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Distillery", inversedBy="Whiskies")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $distillery;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="whisky", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="member", orphanRemoval=true)
      */
     private $reviews;
 
@@ -61,62 +55,50 @@ class Whisky
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setName(string $name): self
+    public function setUsername(string $username): self
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->type;
+        return $this->firstName;
     }
 
-    public function setType(string $type): self
+    public function setFirstName(string $firstName): self
     {
-        $this->type = $type;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getLastName(): ?string
     {
-        return $this->age;
+        return $this->lastName;
     }
 
-    public function setAge(int $age): self
+    public function setLastName(string $lastName): self
     {
-        $this->age = $age;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getAbv(): ?float
+    public function getEmail(): ?string
     {
-        return $this->abv;
+        return $this->email;
     }
 
-    public function setAbv(float $abv): self
+    public function setEmail(string $email): self
     {
-        $this->abv = $abv;
-
-        return $this;
-    }
-
-    public function getDistillery(): ?Distillery
-    {
-        return $this->distillery;
-    }
-
-    public function setDistillery(?Distillery $distillery): self
-    {
-        $this->distillery = $distillery;
+        $this->email = $email;
 
         return $this;
     }
@@ -133,7 +115,7 @@ class Whisky
     {
         if (!$this->reviews->contains($review)) {
             $this->reviews[] = $review;
-            $review->setWhisky($this);
+            $review->setMember($this);
         }
 
         return $this;
@@ -144,8 +126,8 @@ class Whisky
         if ($this->reviews->contains($review)) {
             $this->reviews->removeElement($review);
             // set the owning side to null (unless already changed)
-            if ($review->getWhisky() === $this) {
-                $review->setWhisky(null);
+            if ($review->getMember() === $this) {
+                $review->setMember(null);
             }
         }
 
