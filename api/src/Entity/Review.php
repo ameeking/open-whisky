@@ -36,17 +36,17 @@ class Review
     private $colour;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $nose = [];
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $taste = [];
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $finish;
 
@@ -107,24 +107,24 @@ class Review
         return $this;
     }
 
-    public function getNose(): ?array
+    public function getNose(): ?string
     {
         return $this->nose;
     }
 
-    public function setNose(?array $nose): self
+    public function setNose(?string $nose): self
     {
         $this->nose = $nose;
 
         return $this;
     }
 
-    public function getTaste(): ?array
+    public function getTaste(): ?string
     {
         return $this->taste;
     }
 
-    public function setTaste(?array $taste): self
+    public function setTaste(?string $taste): self
     {
         $this->taste = $taste;
 
