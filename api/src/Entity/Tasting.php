@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TastingRepository")
  */
-class Review
+class Tasting
 {
     /**
      * @ORM\Id()
@@ -20,7 +20,7 @@ class Review
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Whisky", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Whisky", inversedBy="tastings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $whisky;
@@ -61,7 +61,7 @@ class Review
     private $rating;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="tastings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $member;

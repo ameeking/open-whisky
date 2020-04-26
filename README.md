@@ -1,6 +1,6 @@
 # Open Whisky
 
-> Ready to use whisky review platform
+> Ready to use whisky tasting platform
 
 ## Features
 

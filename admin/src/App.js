@@ -8,7 +8,7 @@ const MembersCreate = props => (
         <InputGuesser source="firstName" />
         <InputGuesser source="lastName" />
         <InputGuesser source="email" />
-        <InputGuesser source="reviews" />
+        <InputGuesser source="tastings" />
     </CreateGuesser>
 );
 
@@ -18,11 +18,11 @@ const MembersEdit = props => (
         <InputGuesser source="firstName" />
         <InputGuesser source="lastName" />
         <InputGuesser source="email" />
-        <InputGuesser source="reviews" />
+        <InputGuesser source="tastings" />
     </EditGuesser>
 );
 
-const ReviewsCreate = props => (
+const TastingsCreate = props => (
     <CreateGuesser {...props}>
         <ReferenceInput source="whisky" reference="whiskies" label="Whisky" filterToQuery={searchText => ({ name: searchText })}>
             <AutocompleteInput optionText="name" />
@@ -42,7 +42,7 @@ const ReviewsCreate = props => (
     </CreateGuesser>
 );
 
-const ReviewsEdit = props => (
+const TastingsEdit = props => (
     <EditGuesser {...props}>
         <ReferenceInput source="whisky" reference="whiskies" label="Whisky" filterToQuery={searchText => ({ name: searchText })}>
             <AutocompleteInput optionText="name" />
@@ -73,7 +73,7 @@ const WhiskiesCreate = props => (
             <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
-        <InputGuesser source="reviews" />
+        <InputGuesser source="tastings" />
     </CreateGuesser>
 );
 
@@ -88,7 +88,7 @@ const WhiskiesEdit = props => (
             <AutocompleteInput optionText="name" />
         </ReferenceInput>
 
-        <InputGuesser source="reviews" />
+        <InputGuesser source="tastings" />
     </EditGuesser>
 );
 
@@ -114,7 +114,7 @@ export default () => (
     <HydraAdmin entrypoint={process.env.REACT_APP_API_ENTRYPOINT}>
       <ResourceGuesser name="members" create={MembersCreate} edit={MembersEdit} />
       <ResourceGuesser name="whiskies" create={WhiskiesCreate} edit={WhiskiesEdit}  />
-      <ResourceGuesser name="reviews" create={ReviewsCreate} edit={ReviewsEdit} />
+      <ResourceGuesser name="tastings" create={TastingsCreate} edit={TastingsEdit} />
       <ResourceGuesser name="distilleries" create={DistilleriesCreate} edit={DistilleriesEdit} />
     </HydraAdmin>
   );

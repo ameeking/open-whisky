@@ -50,13 +50,13 @@ class Whisky
     private $distillery;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="whisky", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Tasting", mappedBy="whisky", orphanRemoval=true)
      */
-    private $reviews;
+    private $tastings;
 
     public function __construct()
     {
-        $this->reviews = new ArrayCollection();
+        $this->tastings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,30 +125,30 @@ class Whisky
     }
 
     /**
-     * @return Collection|Review[]
+     * @return Collection|Tasting[]
      */
-    public function getReviews(): Collection
+    public function getTastings(): Collection
     {
-        return $this->reviews;
+        return $this->tastings;
     }
 
-    public function addReview(Review $review): self
+    public function addTasting(Tasting $tasting): self
     {
-        if (!$this->reviews->contains($review)) {
-            $this->reviews[] = $review;
-            $review->setWhisky($this);
+        if (!$this->tastings->contains($tasting)) {
+            $this->tastings[] = $tasting;
+            $tasting->setWhisky($this);
         }
 
         return $this;
     }
 
-    public function removeReview(Review $review): self
+    public function removeTasting(Tasting $tasting): self
     {
-        if ($this->reviews->contains($review)) {
-            $this->reviews->removeElement($review);
+        if ($this->tastings->contains($tasting)) {
+            $this->tastings->removeElement($tasting);
             // set the owning side to null (unless already changed)
-            if ($review->getWhisky() === $this) {
-                $review->setWhisky(null);
+            if ($tasting->getWhisky() === $this) {
+                $tasting->setWhisky(null);
             }
         }
 

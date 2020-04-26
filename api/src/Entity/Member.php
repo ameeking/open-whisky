@@ -44,13 +44,13 @@ class Member
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="member", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Tasting", mappedBy="member", orphanRemoval=true)
      */
-    private $reviews;
+    private $tastings;
 
     public function __construct()
     {
-        $this->reviews = new ArrayCollection();
+        $this->tastings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,30 +107,30 @@ class Member
     }
 
     /**
-     * @return Collection|Review[]
+     * @return Collection|Tasting[]
      */
-    public function getReviews(): Collection
+    public function getTastings(): Collection
     {
-        return $this->reviews;
+        return $this->tastings;
     }
 
-    public function addReview(Review $review): self
+    public function addTasting(Tasting $tasting): self
     {
-        if (!$this->reviews->contains($review)) {
-            $this->reviews[] = $review;
-            $review->setMember($this);
+        if (!$this->tastings->contains($tasting)) {
+            $this->tastings[] = $tasting;
+            $tasting->setMember($this);
         }
 
         return $this;
     }
 
-    public function removeReview(Review $review): self
+    public function removeTasting(Tasting $tasting): self
     {
-        if ($this->reviews->contains($review)) {
-            $this->reviews->removeElement($review);
+        if ($this->tastings->contains($tasting)) {
+            $this->tastings->removeElement($tasting);
             // set the owning side to null (unless already changed)
-            if ($review->getMember() === $this) {
-                $review->setMember(null);
+            if ($tasting->getMember() === $this) {
+                $tasting->setMember(null);
             }
         }
 
