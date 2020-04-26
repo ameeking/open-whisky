@@ -68,7 +68,11 @@ const WhiskiesCreate = props => (
         <InputGuesser source="type" />
         <InputGuesser source="age" />
         <InputGuesser source="abv" />
-        <InputGuesser source="distillery" />
+
+        <ReferenceInput source="distillery" reference="distilleries" label="Distillery" filterToQuery={searchText => ({ name: searchText })}>
+            <AutocompleteInput optionText="name" />
+        </ReferenceInput>
+
         <InputGuesser source="reviews" />
     </CreateGuesser>
 );
@@ -79,7 +83,11 @@ const WhiskiesEdit = props => (
         <InputGuesser source="type" />
         <InputGuesser source="age" />
         <InputGuesser source="abv" />
-        <InputGuesser source="distillery" />
+
+        <ReferenceInput source="distillery" reference="distilleries" label="Distillery" filterToQuery={searchText => ({ name: searchText })}>
+            <AutocompleteInput optionText="name" />
+        </ReferenceInput>
+
         <InputGuesser source="reviews" />
     </EditGuesser>
 );
