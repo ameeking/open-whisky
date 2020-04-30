@@ -23,5 +23,23 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Swagger\SwaggerDecorator:
+        decorates: 'api_platform.swagger.normalizer.documentation'
+        arguments: ['@App\Swagger\SwaggerDecorator.inner']
+        autoconfigure: false
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Repositories
+    app.user.repository:
+        class: App\Repository\UsersRepository
+        arguments:
+            - Symfony\Bridge\Doctrine\RegistryInterface
+            - Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
+
+    # Controllers
+    app.auth.controller:
+        class: App\Controller\AuthController
+        arguments:
+            - '@app.user.repository'
